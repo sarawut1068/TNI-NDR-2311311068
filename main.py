@@ -10,16 +10,17 @@ from PIL import Image
 import os #for opening png -> # os.system("start DELTA_Graph.png") 
 import matplotlib.dates as mdates
 
-st.title("AAV.graph")
+st.title("Asia Aviation Public Company Limited(AAV)")
+st.write("Graph of AAV")
 
 
 df = pd.read_excel("AAV.xlsx", sheet_name="AAV", skiprows=1)
 
 # Setting Column names
 df.columns = [
-    "วันที่", "ราคาเปิด", "ราคาสูงสุด", "ราคาต่ำสุด", "ราคาเฉลี่ย", "ราคาปิด",
-    "เปลี่ยนแปลง", "เปลี่ยนแปลง(%)", "ปริมาณ(พันหุ้น)", "มูลค่า(ล้านบาท)",
-    "SET Index", "SET เปลี่ยนแปลง(%)"
+    "Date", "Opening_price", "Highest_price", "Lowest_price", "Average_price", "Closing_price",
+    "change", "change_(%)", "Volume_('000 shares)", "Value_(million baht)",
+    "SET_Index", "change _(%)"
 ]
 
 # Converting Months
@@ -40,14 +41,14 @@ def convert_thai_date(thai_date_str):
     return None
 
 
-df = df[~df["วันที่"].isna()]
-df = df[~df["วันที่"].astype(str).str.contains("วันที่")]
+df = df[~df["Date"].isna()]
+df = df[~df["Date"].astype(str).str.contains("วันที่")]
 
 
-df["วันที่"] = df["วันที่"].apply(convert_thai_date)
-df = df.dropna(subset=["วันที่"])
-df["วันที่"] = pd.to_datetime(df["วันที่"], errors='coerce')
-df = df.dropna(subset=["วันที่"])
+df["Date"] = df["Date"].apply(convert_thai_date)
+df = df.dropna(subset=["Date"])
+df["Date"] = pd.to_datetime(df["Date"], errors='coerce')
+df = df.dropna(subset=["Date"])
 
 # ----- End of dealing with months ----- #
 # show month in termianl
@@ -55,17 +56,17 @@ print(df.head(10))
 
 # ----- Start working with Graph ----- #
 # Building and Setting Graph
-df_sorted = df.sort_values("วันที่")
-X = df_sorted["วันที่"].map(pd.Timestamp.toordinal).values.reshape(-1, 1)
-y = df_sorted["ราคาปิด"].values
+df_sorted = df.sort_values("Date")
+X = df_sorted["Date"].map(pd.Timestamp.toordinal).values.reshape(-1, 1)
+y = df_sorted["Closing_price"].values
 
 model = LinearRegression()
 model.fit(X, y)
 trend = model.predict(X)
 
 plt.figure(figsize=(12, 6))
-plt.plot(df_sorted["วันที่"], y, label="Actual Closing Price")
-plt.plot(df_sorted["วันที่"], trend, label="Trend (Linear Regression)", linestyle="--", color="red")
+plt.plot(df_sorted["Date"], y, label="Actual Closing Price")
+plt.plot(df_sorted["Date"], trend, label="Trend (Linear Regression)", linestyle="--", color="red")
 plt.title("DELTA Closing Price Trend")
 plt.xlabel("Date")
 plt.ylabel("Closing Price (Baht)")
@@ -82,21 +83,21 @@ st.image(img, caption="graph",use_container_width=True)
 
 
 # month,year column 
-df["เดือน"] = df["วันที่"].dt.month
-df["ปี"] = df["วันที่"].dt.year
+df["เดือน"] = df["Date"].dt.month
+df["ปี"] = df["Date"].dt.year
 
 # month choices
 months = df["เดือน"].unique()
 months.sort()
 
 # looping through month in option (ย้อนหลัง 6 เดือน)
-month_options = ["ทั้งหมด"] + [f"{month:02d}" for month in months]
+month_options = ["All"] + [f"{month:02d}" for month in months]
 
 # select box for selecting month
-selected_month = st.selectbox("เลือกเดือน", month_options)
+selected_month = st.selectbox("Selectin month", month_options)
 
 # filtering data by choice selected
-if selected_month != "ทั้งหมด":
+if selected_month != "All":
     # if choice != ทั้งหมด then choice = selected int month (converted into number already)
     filtered_df = df[df["เดือน"] == int(selected_month)]
 else:
@@ -104,12 +105,12 @@ else:
     filtered_df = df.copy()
 
 # filtering to show only date (without showing time)
-filtered_df["วันที่"] = filtered_df["วันที่"].dt.date
+filtered_df["Date"] = filtered_df["Date"].dt.date
 
 # filtering index starting from 1 to n
 filtered_df.index = range(1, len(filtered_df) + 1)
 
-# displaying filtered data
+# displaying filtered data  
 st.dataframe(filtered_df)
 
 
