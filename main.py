@@ -89,7 +89,7 @@ months.sort()
 month_options = ["All"] + [f"{month:02d}" for month in months]
 
 # select box for selecting month
-selected_month = st.selectbox("Selectin month", month_options)
+selected_month = st.selectbox("Select month", month_options)
 
 # filtering data by choice selected
 if selected_month != "All":
