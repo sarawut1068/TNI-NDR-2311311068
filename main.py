@@ -4,13 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import matplotlib
-import streamlit as st
+import streamlit as st  
 from PIL import Image
 import os #for opening png -> # os.system("start DELTA_Graph.png") 
 import matplotlib.dates as mdates
 
-st.title("Asia Aviation Public Company Limited(AAV)")
-st.write("6 months retrospective data")
+st.markdown("<h1 style='text-align: center;'>Asia Aviation Public Company Limited (AAV)</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>ข้อมูลย้อนหลัง 6 เดือน</p>", unsafe_allow_html=True)
 
 
 df = pd.read_excel("AAV.xlsx", sheet_name="AAV", skiprows=1)
@@ -108,11 +108,10 @@ filtered_df.index = range(1, len(filtered_df) + 1)
 # displaying filtered data  
 st.dataframe(filtered_df)
 
-st.write("Opengraph click")
 
 if "show_graph" not in st.session_state:
     st.session_state.show_graph = False 
-if st.button("show/hide"):
+if st.button("Click to open/hide"):
     st.session_state.show_graph = not st.session_state.show_graph
 
 if st.session_state.show_graph:
