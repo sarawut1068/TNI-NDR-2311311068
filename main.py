@@ -10,6 +10,7 @@ import os #for opening png -> # os.system("start DELTA_Graph.png")
 import matplotlib.dates as mdates
 
 st.markdown("<h1 style='text-align: center;'>Asia Aviation Public Company Limited (AAV)</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>บริษัท เอเชีย เอวิเอชั่น จำกัด (มหาชน)</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>ข้อมูลย้อนหลัง 6 เดือน</p>", unsafe_allow_html=True)
 
 
@@ -117,7 +118,7 @@ if st.button("Click to open/hide"):
 if st.session_state.show_graph:
     st.image(img, caption="",use_container_width=True)
 
-st.sidebar.header("ข้อมูลบริษัท AAV")
+st.sidebar.markdown("<h1 style='text-align: center;'>ข้อมูลบริษัท(AAV)</h1>", unsafe_allow_html=True)
 st.sidebar.markdown("""
 **ตลาด:** SET  
 **วันที่เริ่มต้นซื้อขาย:** 31 พ.ค. 2555  
