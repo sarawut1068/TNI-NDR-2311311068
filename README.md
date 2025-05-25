@@ -1,2 +1,2 @@
-# TNI-NDR-2311311068
+# project_494
 pip install streamlit
