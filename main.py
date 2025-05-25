@@ -10,7 +10,7 @@ import os #for opening png -> # os.system("start DELTA_Graph.png")
 import matplotlib.dates as mdates
 
 st.title("Asia Aviation Public Company Limited(AAV)")
-st.write("Graph of AAV(ย้อนหลัง 6 เดือน)")
+st.write("Graph of AAV (ย้อนหลัง 6 เดือน)")
 
 
 df = pd.read_excel("AAV.xlsx", sheet_name="AAV", skiprows=1)
@@ -66,7 +66,7 @@ trend = model.predict(X)
 plt.figure(figsize=(12, 6))
 plt.plot(df_sorted["Date"], y, label="Actual Closing Price")
 plt.plot(df_sorted["Date"], trend, label="Trend (Linear Regression)", linestyle="--", color="red")
-plt.title("DELTA Closing Price Trend")
+plt.title("AAV Closing Price Trend")
 plt.xlabel("Date")
 plt.ylabel("Closing Price (Baht)")
 plt.legend()
@@ -115,3 +115,83 @@ if st.button("show/hide"):
 
 if st.session_state.show_graph:
     st.image(img, caption="",use_container_width=True)
+
+st.sidebar.header("ข้อมูลบริษัท AAV")
+st.sidebar.markdown("""
+**ตลาด:** SET  
+**วันที่เริ่มต้นซื้อขาย:** 31 พ.ค. 2555  
+**กลุ่มอุตสาหกรรม:** บริการ  
+**หมวดธุรกิจ:** ขนส่งและโลจิสติกส์  
+**ข้อจำกัดการถือหุ้นต่างด้าว:** 0.10% (ณ วันที่ 23 พ.ค. 2568)  
+**Free Float:** 36.17%  
+**ราคาพาร์:** 0.10 บาท  
+**เลขรหัสหลักทรัพย์สากล:**  
+- ในประเทศ: TH3437010004  
+- ต่างด้าว: TH3437010012  
+- NVDR: TH3437010R19  
+""")
+
+st.sidebar.markdown("### นโยบายการจ่ายปันผล")
+st.sidebar.markdown("""
+จ่ายเงินปันผลโดยคำนึงถึงผลการดำเนินงาน สภาพคล่อง กระแสเงินสด และสถานะทางการเงิน  
+ของบริษัทฯ เงื่อนไขและข้อจำกัดในการจ่ายเงินปันผลตามที่กำหนดไว้ใน  
+สัญญาเงินกู้ หุ้นกู้ หรือสัญญาต่าง ๆ ที่เกี่ยวข้อง
+""")
+
+st.sidebar.markdown("### วันปิดรอบบัญชี")
+st.sidebar.markdown("31 ธันวาคม ของทุกปี")
+
+st.sidebar.markdown("### ผู้สอบบัญชี (สิ้นสุด 31 ธ.ค. 2568)")
+st.sidebar.markdown("""
+1. นาย นรินทร์ จูระมงคล  
+2. นาย ธีรศักดิ์ ฉั่วศรีสกุล  
+3. นาย ไกรแสง ธีรนุลักษณ์  
+(**บริษัท บีดีโอ ออดิท จำกัด**)
+""")
+
+st.sidebar.markdown("### ผู้บริหารสายบัญชีและการเงิน")
+st.sidebar.markdown("""
+**นาย ไพรัชล์ พรพัฒนนางกูร**  
+(เริ่มต้น 31 ม.ค. 2563)
+""")
+
+st.sidebar.markdown("### ผู้ควบคุมการทำบัญชี")
+st.sidebar.markdown("""
+**นางสาว นวพร คำนิล**  
+(เริ่มต้น 1 ส.ค. 2566)
+""")
+
+st.sidebar.title("รายละเอียดเกี่ยวกับทุน")
+
+# แสดงข้อมูลใน Sidebar
+st.sidebar.markdown("**หุ้นสามัญ**")
+st.sidebar.markdown(f"- ทุนจดทะเบียน (บาท): **1,285,000,000.00**")
+st.sidebar.markdown(f"- ทุนจดทะเบียนชำระแล้ว (บาท): **1,284,999,999.70**")
+
+st.sidebar.markdown("### หุ้นและทุนจดทะเบียน")
+st.sidebar.markdown("""
+**หุ้นบุริมสิทธิ:** -  
+**ทุนจดทะเบียน:** -  
+**ทุนจดทะเบียนชำระแล้ว:** -  
+""")
+
+st.sidebar.markdown("### รายละเอียดเกี่ยวกับจำนวนหุ้น")
+
+st.sidebar.markdown("**หุ้นสามัญ**")
+st.sidebar.markdown("""
+- จำนวนหุ้นจดทะเบียนกับตลาดหลักทรัพย์ฯ: 12,849,999,997  
+- จำนวนหุ้นชำระแล้ว: 12,849,999,997  
+- สิทธิออกเสียง: 1 : 1  
+- จำนวนหุ้นซื้อคืน: -  
+- จำนวนหุ้นที่มีสิทธิออกเสียง (หักหุ้นซื้อคืน):  
+  - ณ วันที่ 26 พ.ค. 2568: 12,849,999,997  
+  - ณ วันที่ 30 เม.ย. 2568: 12,849,999,997  
+""")
+
+st.sidebar.markdown("**หุ้นบุริมสิทธิ**")
+st.sidebar.markdown("""
+- จำนวนหุ้นจดทะเบียนกับตลาดหลักทรัพย์ฯ: -  
+- จำนวนหุ้นชำระแล้ว: -  
+- จำนวนหุ้นซื้อคืน: -  
+- จำนวนหุ้นที่มีสิทธิออกเสียง (หักหุ้นซื้อคืน): -  
+""")
