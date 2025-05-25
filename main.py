@@ -78,8 +78,13 @@ plt.savefig("AAV_Graph.png")
 plt.close()
 img = Image.open("AAV_Graph.png")
 
+if "show_graph" not in st.session_state:
+    st.session_state.show_graph = False 
+if st.button("show/hide"):
+    st.session_state.show_graph = not st.session_state.show_graph
 
-st.image(img, caption="graph",use_container_width=True)
+if st.session_state.show_graph:
+    st.image(img, caption="graph",use_container_width=True)
 
 
 # month,year column 
