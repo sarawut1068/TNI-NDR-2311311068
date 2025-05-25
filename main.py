@@ -112,3 +112,5 @@ filtered_df.index = range(1, len(filtered_df) + 1)
 # displaying filtered data
 st.dataframe(filtered_df)
 
+
+
