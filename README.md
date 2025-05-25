@@ -1,4 +1,6 @@
-# Project 494 Stock visualization
+## Project 494 Stock visualization
 
 ## Installation
-```pip instal -r requirements.txt```
+```pip install streamlit pandas matplotlib scikit-learn pillow openpyxl```
+## run streamlit
+```streamlit run your_script_name.py```
