@@ -76,7 +76,6 @@ plt.tight_layout()
 plt.savefig("AAV_Graph.png")
 plt.close()
 img = Image.open("AAV_Graph.png")
-img.show()
 
 
 st.image(img, caption="graph",use_container_width=True)
