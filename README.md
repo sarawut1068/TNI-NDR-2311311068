@@ -1,2 +1,4 @@
-# project_494
-pip install streamlit
+# Project 494 Stock visualization
+
+## Installation
+```pip instal -r requirements.txt```
