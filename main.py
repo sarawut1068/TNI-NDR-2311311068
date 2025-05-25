@@ -1,4 +1,3 @@
-
 # Importing Libraries
 import pandas as pd
 import numpy as np
@@ -78,21 +77,12 @@ plt.savefig("AAV_Graph.png")
 plt.close()
 img = Image.open("AAV_Graph.png")
 
-if "show_graph" not in st.session_state:
-    st.session_state.show_graph = False 
-if st.button("show/hide"):
-    st.session_state.show_graph = not st.session_state.show_graph
-
-if st.session_state.show_graph:
-    st.image(img, caption="",use_container_width=True)
-
-
 # month,year column 
-df["เดือน"] = df["Date"].dt.month
-df["ปี"] = df["Date"].dt.year
+df["month"] = df["Date"].dt.month
+df["years"] = df["Date"].dt.year
 
 # month choices
-months = df["เดือน"].unique()
+months = df["month"].unique()
 months.sort()
 
 # looping through month in option (ย้อนหลัง 6 เดือน)
@@ -104,7 +94,7 @@ selected_month = st.selectbox("Selectin month", month_options)
 # filtering data by choice selected
 if selected_month != "All":
     # if choice != ทั้งหมด then choice = selected int month (converted into number already)
-    filtered_df = df[df["เดือน"] == int(selected_month)]
+    filtered_df = df[df["month"] == int(selected_month)]
 else:
     # copy all data (choice = ทั้งหมด) || สร้างสําเนา dataframe โดยไม่ให้เกิดการเปลี่ยนเเปลงตาม choice 
     filtered_df = df.copy()
@@ -118,5 +108,10 @@ filtered_df.index = range(1, len(filtered_df) + 1)
 # displaying filtered data  
 st.dataframe(filtered_df)
 
+if "show_graph" not in st.session_state:
+    st.session_state.show_graph = False 
+if st.button("show/hide"):
+    st.session_state.show_graph = not st.session_state.show_graph
 
-
+if st.session_state.show_graph:
+    st.image(img, caption="",use_container_width=True)
