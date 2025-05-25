@@ -11,7 +11,7 @@ import os #for opening png -> # os.system("start DELTA_Graph.png")
 import matplotlib.dates as mdates
 
 st.title("Asia Aviation Public Company Limited(AAV)")
-st.write("Graph of AAV")
+st.write("Graph of AAV(ย้อนหลัง 6 เดือน)")
 
 
 df = pd.read_excel("AAV.xlsx", sheet_name="AAV", skiprows=1)
@@ -84,7 +84,7 @@ if st.button("show/hide"):
     st.session_state.show_graph = not st.session_state.show_graph
 
 if st.session_state.show_graph:
-    st.image(img, caption="graph",use_container_width=True)
+    st.image(img, caption="",use_container_width=True)
 
 
 # month,year column 
