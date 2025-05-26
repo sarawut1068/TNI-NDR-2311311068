@@ -1,4 +1,5 @@
 matplotlib
-openpyxlpandas
+openpyxl
+pandas
 streamlit
 numpy
