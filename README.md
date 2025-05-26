@@ -10,3 +10,6 @@
 ```AAV_Graph.png          # กราฟแนวโน้มราคาปิด (สร้างโดยอัตโนมัติ)```
 ```aav_dashboard.py       # สคริปต์หลัก```
 ```README.md ```
+ 
+## link
+```https://www.canva.com/design/DAGoda5BTSU/nNmpOEI1gVkJwuCRcDrDrQ/edit```

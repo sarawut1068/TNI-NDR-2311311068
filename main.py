@@ -42,7 +42,7 @@ def convert_thai_date(thai_date_str):
 
 
 df = df[~df["Date"].isna()]
-df = df[~df["Date"].astype(str).str.contains("วันที่")]
+df = df[~df["Date"].astype(str).str.contains("date")]
 
 
 df["Date"] = df["Date"].apply(convert_thai_date)
@@ -50,11 +50,10 @@ df = df.dropna(subset=["Date"])
 df["Date"] = pd.to_datetime(df["Date"], errors='coerce')
 df = df.dropna(subset=["Date"])
 
-# ----- End of dealing with months ----- #
+
 # show month in termianl
 print(df.head(10))
-
-# ----- Start working with Graph ----- #
+ 
 # Building and Setting Graph
 df_sorted = df.sort_values("Date")
 X = df_sorted["Date"].map(pd.Timestamp.toordinal).values.reshape(-1, 1)
@@ -86,7 +85,7 @@ df["years"] = df["Date"].dt.year
 months = df["month"].unique()
 months.sort()
 
-# looping through month in option (ย้อนหลัง 6 เดือน)
+# looping through month in option 
 month_options = ["All"] + [f"{month:02d}" for month in months]
 
 # select box for selecting month
@@ -94,10 +93,8 @@ selected_month = st.selectbox("Select month", month_options)
 
 # filtering data by choice selected
 if selected_month != "All":
-    # if choice != ทั้งหมด then choice = selected int month (converted into number already)
     filtered_df = df[df["month"] == int(selected_month)]
 else:
-    # copy all data (choice = ทั้งหมด) || สร้างสําเนา dataframe โดยไม่ให้เกิดการเปลี่ยนเเปลงตาม choice 
     filtered_df = df.copy()
 
 # filtering to show only date (without showing time)
