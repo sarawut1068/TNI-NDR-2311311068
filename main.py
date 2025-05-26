@@ -7,7 +7,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib
 import streamlit as st  
 from PIL import Image
-import os #for opening png -> # os.system("start DELTA_Graph.png") 
+import os
 import matplotlib.dates as mdates
 
 st.markdown("<h1 style='text-align: center;'>Asia Aviation Public Company Limited (AAV)</h1>", unsafe_allow_html=True)
@@ -98,10 +98,8 @@ if selected_month != "All":
 else:
     filtered_df = df.copy()
 
-# filtering to show only date (without showing time)
 filtered_df["Date"] = filtered_df["Date"].dt.date
 
-# filtering index starting from 1 to n
 filtered_df.index = range(1, len(filtered_df) + 1)
 
 # displaying filtered data  
@@ -116,6 +114,7 @@ if st.button("Click to open/hide"):
 if st.session_state.show_graph:
     st.image(img, caption="",use_container_width=True)
 
+# data compeny
 st.sidebar.markdown("<h1 style='text-align: center;'>ข้อมูลบริษัท(AAV)</h1>", unsafe_allow_html=True)
 st.sidebar.markdown("""
 **ตลาด:** SET  
